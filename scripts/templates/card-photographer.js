@@ -1,4 +1,4 @@
-function photographerTemplate(data) {
+function cardPhotographerTemplate(data) {
 	const { name, id, city, country, tagline, price, portrait } = data; // Récupération des données du photographe
 
 	function getUserCardDOM() {
