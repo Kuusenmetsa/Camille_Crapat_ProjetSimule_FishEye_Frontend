@@ -1,5 +1,5 @@
 async function getPhotographers() {
-	const res = await fetch('../../data/photographers.json', {
+	const res = await fetch('/../../data/photographers.json', {
 		method: 'GET',
 		headers: {
 			Accept: 'application/json',
