@@ -7,7 +7,7 @@ function cardPhotographerTemplate(data) {
 
 		// Création d'un lien contenant le titre et la photo du phtographe
 		const a = document.createElement('a');
-		a.setAttribute('href', `/photographer.html?id=${id}`);
+		a.setAttribute('href', `photographer.html?id=${id}`);
 		a.setAttribute('aria-label', name);
 		article.appendChild(a);
 		const h2 = document.createElement('h2');
