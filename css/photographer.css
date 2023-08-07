@@ -9,13 +9,12 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 50px;
+	flex-wrap: wrap;
+	padding: 0 50px;
 }
-.photograph-header img {
-	width: 200px;
-	height: 200px;
-	object-fit: cover;
-	border-radius: 200px;
+.photograph-header div {
+	width: auto;
+	max-width: 300px;
 }
 .photograph-header h2 {
 	color: #d3573c;

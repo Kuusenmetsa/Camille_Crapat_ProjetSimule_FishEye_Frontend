@@ -39,13 +39,13 @@ async function getPhotographer() {
 	return photographer;
 }
 async function displayData(photographer) {
-	const photographerHeader = document.querySelector('.photograph-header');
 	const buttonContact = document.querySelector('.contact_button');
-	const photographerModel = headerPhotographerTemplate(photographer);
-	const userHeaderDOM = photographerModel.getHeaderPhotographerDOM();
+	const photographerModel = photographerTemplate(photographer);
+	const identityPhotographerDOM = photographerModel.getIdentityPhotographerDOM();
+	const imgPhotographerDOM = photographerModel.getImgPhotographerDOM();
 
-	buttonContact.before(userHeaderDOM);
-	buttonContact.after(imgPhotographerTemplate(photographer).getImgPhotographerDOM());
+	buttonContact.before(identityPhotographerDOM);
+	buttonContact.after(imgPhotographerDOM);
 }
 
 async function init() {
