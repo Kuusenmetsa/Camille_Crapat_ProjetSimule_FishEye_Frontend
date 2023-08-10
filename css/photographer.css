@@ -1,7 +1,13 @@
 #contact_modal {
 	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(196, 196, 196, 0.4);
+	overflow-y: scroll;
 }
-
 .photograph-header {
 	background-color: #fafafa;
 	height: 300px;
@@ -57,7 +63,9 @@
 	align-items: center;
 	justify-content: space-between;
 	padding: 35px;
-	margin: auto;
+	height: 900px;
+	margin: 50px auto;
+	position: relative;
 }
 
 .modal header {
@@ -92,7 +100,6 @@ form div {
 	flex-direction: column;
 	width: 100%;
 	align-items: self-start;
-	margin-bottom: 26px;
 }
 
 form input {
@@ -100,4 +107,64 @@ form input {
 	height: 68px;
 	border: none;
 	border-radius: 5px;
+}
+form textarea {
+	resize: none;
+	width: 100%;
+	height: 170px;
+	border-radius: 5px;
+	border: none;
+}
+.formData {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+.formData[data-error]::after {
+	content: attr(data-error);
+	font-size: 1em;
+	font-weight: bold;
+	color: #e54858;
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: right;
+	line-height: 0.3;
+	opacity: 0;
+	transition: 0.3s;
+	align-self: flex-end;
+}
+.formData[data-error-visible='true']::after {
+	opacity: 1;
+}
+.formData[data-error-visible='true'] .input {
+	border: 2px solid #e54858;
+}
+.confirm-message {
+	height: 700px;
+	font-size: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+main section.medias {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin: 0 100px;
+}
+main section.medias article.mediaCard {
+	width: 350px;
+	height: 350px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+main section.medias article.mediaCard p {
+	font-size: 24px;
+	color: #901c1c;
+	font-weight: normal;
 }

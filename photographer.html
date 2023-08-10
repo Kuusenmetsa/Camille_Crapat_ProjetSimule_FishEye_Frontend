@@ -15,25 +15,40 @@
 		</header>
 		<main id="main">
 			<div class="photograph-header">
-				<button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+				<button class="contact_button">Contactez-moi</button>
 			</div>
 		</main>
 		<div id="contact_modal">
 			<div class="modal">
 				<header>
 					<h2>Contactez-moi</h2>
-					<img src="assets/icons/close.svg" onclick="closeModal()" />
+					<img src="assets/icons/close.svg" id="contact_close" />
 				</header>
-				<form>
+				<form name="contact">
 					<div>
-						<label>Prénom</label>
-						<input />
+						<div class="formData firstname" data-error="Veuillez entrer un prénom valide" data-error-visible="false">
+							<label for="firstname">Prénom</label>
+							<input type="text" name="firstname" class="input" id="firstname" />
+						</div>
+						<div class="formData lastname" data-error="Veuillez entrer un nom valide" data-error-visible="false">
+							<label for="lastname">Nom</label>
+							<input type="text" name="lastname" class="input" id="lastname" />
+						</div>
+						<div class="formData mail" data-error="Veuillez entrer un e-mail valide" data-error-visible="false">
+							<label for="mail">Email</label>
+							<input type="email" name="mail" class="input" id="mail" />
+						</div>
+						<div class="formData message" data-error="Veuillez entrer un message valide" data-error-visible="false">
+							<label for="message">Votre message</label>
+							<textarea type="text" name="message" class="input" id="message"></textarea>
+						</div>
 					</div>
-					<button class="contact_button">Envoyer</button>
+					<button class="contact_button" type="submit">Envoyer</button>
 				</form>
 			</div>
 		</div>
 		<script src="scripts/templates/photographer.js"></script>
+		<script src="scripts/templates/media.js"></script>
 		<script src="scripts/pages/photographer.js"></script>
 		<script src="scripts/utils/contactForm.js"></script>
 	</body>

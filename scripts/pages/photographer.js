@@ -38,7 +38,25 @@ async function getPhotographer() {
 	});
 	return photographer;
 }
-async function displayData(photographer) {
+
+async function getMedias() {
+	const res = await fetch('data/photographers.json', {
+		method: 'GET',
+		headers: {
+			Accept: 'applciation/json',
+		},
+	});
+	const medias = await res.json();
+	return medias;
+}
+
+async function getMedia() {
+	const { media } = await getMedias();
+	const res = media.filter((media) => media.photographerId == collectURL());
+	return res;
+}
+
+async function displayData(photographer, medias) {
 	const buttonContact = document.querySelector('.contact_button');
 	const photographerModel = photographerTemplate(photographer);
 	const identityPhotographerDOM = photographerModel.getIdentityPhotographerDOM();
@@ -46,11 +64,23 @@ async function displayData(photographer) {
 
 	buttonContact.before(identityPhotographerDOM);
 	buttonContact.after(imgPhotographerDOM);
+
+	const main = document.querySelector('main');
+	const section = document.createElement('section');
+	section.setAttribute('class', 'medias');
+	main.appendChild(section);
+	medias.forEach((media) => {
+		const mediaModel = mediaTemplate(media);
+		const getMediasDOM = mediaModel.getMediasDOM();
+
+		section.appendChild(getMediasDOM);
+	});
 }
 
 async function init() {
 	const photographer = await getPhotographer();
-	displayData(photographer);
+	const medias = await getMedia();
+	displayData(photographer, medias);
 }
 
 init();
