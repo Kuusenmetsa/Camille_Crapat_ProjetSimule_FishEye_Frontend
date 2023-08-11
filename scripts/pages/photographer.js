@@ -65,6 +65,10 @@ async function displayData(photographer, medias) {
 	buttonContact.before(identityPhotographerDOM);
 	buttonContact.after(imgPhotographerDOM);
 
+	const titleName = document.getElementById('namePhotographer');
+	const { name } = await getPhotographer();
+	titleName.textContent = name;
+
 	const main = document.querySelector('main');
 	const section = document.createElement('section');
 	section.setAttribute('class', 'medias');

@@ -54,16 +54,17 @@ function getValue(id = '') {
 }
 
 // Checked form contact
-function checkInputs(type = null) {
+async function checkInputs(type = null) {
 	const firstName = checkInput('firstname', '.firstname', regexName);
 	const lastName = checkInput('lastname', '.lastname', regexName);
 	const email = checkInput('mail', '.mail', regexMail);
 	const message = checkInput('message', '.message', regexMessage);
+	const { name } = await getPhotographer();
 
 	if (type === 'submit' && firstName && lastName && email && message) {
 		const contact = {
 			expediteur: `${firstName} ${lastName} - ${email}`,
-			destintaire: 'test',
+			destintaire: name,
 			message: message,
 		};
 
@@ -71,7 +72,7 @@ function checkInputs(type = null) {
 
 		const p = document.createElement('p');
 		p.className = 'confirm-message';
-		p.textContent = `Votre message a bien été transmis à `;
+		p.textContent = `Votre message a bien été transmis à ${name}`;
 
 		formContact.forEach((f) => {
 			f.reset();

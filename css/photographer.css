@@ -72,15 +72,17 @@
 	justify-content: space-between;
 	width: 100%;
 }
-
-.modal header img {
-	cursor: pointer;
-}
-
-.modal header h2 {
+.modal header div h2 {
 	font-size: 64px;
 	font-weight: normal;
-	text-align: center;
+	margin: 0;
+}
+.modal header div h2#namePhotographer {
+	font-size: 52px;
+}
+.modal header img {
+	cursor: pointer;
+	align-self: flex-start;
 }
 
 form {
@@ -128,7 +130,7 @@ form textarea {
 	color: #e54858;
 	display: block;
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 2px;
 	text-align: right;
 	line-height: 0.3;
 	opacity: 0;
