@@ -17,6 +17,33 @@
 			<div class="photograph-header">
 				<button class="contact_button">Contactez-moi</button>
 			</div>
+			<div id="mediasContainer">
+				<div class="sortChange">
+					<p id="labelSort" role="label">Trier par</p>
+					<div
+						class="select--custom"
+						role="listbox"
+						id="select"
+						aria-labelledby="labelSort"
+						aria-activedescendant="popularity"
+						tabindex="0"
+						onclick="function click (){
+							if(document.querySelector('.select--custom').classList.contains('select--open')){
+								document.querySelector('.select--custom').classList.remove('select--open');
+							}
+							else{
+								document.querySelector('.select--custom').classList.add('select--open');
+							} } click()"
+					>
+						<span role="option" class="option--current selected" id="popularity" aria-selected="true">Popularité</span>
+						<div class="options">
+							<span class="option" role="option" id="date" aria-selected="false">Date</span>
+							<span class="option" role="option" id="title" aria-selected="false">Titre</span>
+						</div>
+					</div>
+				</div>
+				<section class="medias"></section>
+			</div>
 		</main>
 		<div id="contact_modal">
 			<div class="modal">

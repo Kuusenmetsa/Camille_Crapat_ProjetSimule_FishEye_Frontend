@@ -56,7 +56,33 @@ async function getMedia() {
 	return res;
 }
 
-async function displayData(photographer, medias) {
+async function sortMedia(type, media) {
+	if (type === 'popularity') {
+		await media.sort(function (a, b) {
+			return b.likes - a.likes;
+		});
+	} else if (type === 'date') {
+		await media.sort(function (a, b) {
+			a.date = new Date(a.date).getTime();
+			b.date = new Date(b.date).getTime();
+			return b.date - a.date;
+		});
+	} else if (type === 'title') {
+		await media.sort(function (a, b) {
+			if (a.title < b.title) {
+				return -1;
+			} else if (a.title > b.title) {
+				return 1;
+			}
+			return 0;
+		});
+	} else {
+		console.log('une erreur est survenu lors du tri des medias');
+	}
+	return media;
+}
+
+async function displayData(photographer) {
 	const buttonContact = document.querySelector('.contact_button');
 	const photographerModel = photographerTemplate(photographer);
 	const identityPhotographerDOM = photographerModel.getIdentityPhotographerDOM();
@@ -66,13 +92,11 @@ async function displayData(photographer, medias) {
 	buttonContact.after(imgPhotographerDOM);
 
 	const titleName = document.getElementById('namePhotographer');
-	const { name } = await getPhotographer();
-	titleName.textContent = name;
+	titleName.textContent = photographer.name;
+}
 
-	const main = document.querySelector('main');
-	const section = document.createElement('section');
-	section.setAttribute('class', 'medias');
-	main.appendChild(section);
+async function displayMedias(medias) {
+	const section = document.querySelector('.medias');
 	medias.forEach((media) => {
 		const mediaModel = mediaTemplate(media);
 		const getMediasDOM = mediaModel.getMediasDOM();
@@ -81,10 +105,73 @@ async function displayData(photographer, medias) {
 	});
 }
 
+function changeOption(span) {
+	const options = document.querySelector('.options');
+	const selected = document.querySelector('.selected');
+
+	span.classList.remove('option');
+	span.classList.add('option--current');
+	span.classList.add('selected');
+	span.setAttribute('aria-selected', 'true');
+	options.before(span);
+
+	options.appendChild(selected);
+	selected.classList.add('option');
+	selected.classList.remove('option--current');
+	selected.classList.remove('selected');
+	selected.setAttribute('aria-selected', 'false');
+}
+
+async function eventOption(medias) {
+	const span = document.querySelectorAll('span');
+	span.forEach((span) => {
+		span.addEventListener('click', async (e) => {
+			e.preventDefault();
+			if (span.getAttribute('id') === 'popularity') {
+				if (!span.classList.contains('selected')) {
+					changeOption(span);
+					const mediasNew = await sortMedia('popularity', medias);
+					const mediaCurrent = document.querySelectorAll('.mediaCard');
+					mediaCurrent.forEach((media) => {
+						media.remove();
+					});
+					await displayMedias(mediasNew);
+				}
+			} else if (span.getAttribute('id') === 'date') {
+				if (!span.classList.contains('selected')) {
+					changeOption(span);
+					const mediasNew = await sortMedia('date', medias);
+					const mediaCurrent = document.querySelectorAll('.mediaCard');
+					mediaCurrent.forEach((media) => {
+						media.remove();
+					});
+					await displayMedias(mediasNew);
+				}
+			} else if (span.getAttribute('id') === 'title') {
+				if (!span.classList.contains('selected')) {
+					changeOption(span);
+					const mediasNew = await sortMedia('title', medias);
+					const mediaCurrent = document.querySelectorAll('.mediaCard');
+					mediaCurrent.forEach((media) => {
+						media.remove();
+					});
+					await displayMedias(mediasNew);
+				}
+			} else {
+			}
+		});
+	});
+}
+
 async function init() {
 	const photographer = await getPhotographer();
-	const medias = await getMedia();
-	displayData(photographer, medias);
+	const medias = await sortMedia('popularity', await getMedia());
+
+	// écouteur d'évènement
+
+	await displayData(photographer);
+	await displayMedias(medias);
+	eventOption(medias);
 }
 
 init();
