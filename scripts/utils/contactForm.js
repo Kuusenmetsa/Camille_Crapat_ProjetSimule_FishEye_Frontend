@@ -100,7 +100,6 @@ function checkInput(id = '', className = '', regex = '') {
 		return value;
 	}
 	function addError(className) {
-		console.log(document.querySelector(className));
 		document.querySelector(className).setAttribute('data-error-visible', 'true');
 	}
 	function delError(className) {
