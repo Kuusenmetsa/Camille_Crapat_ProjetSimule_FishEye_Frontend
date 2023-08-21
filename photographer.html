@@ -27,18 +27,13 @@
 						aria-labelledby="labelSort"
 						aria-activedescendant="popularity"
 						tabindex="0"
-						onclick="function click (){
-							if(document.querySelector('.select--custom').classList.contains('select--open')){
-								document.querySelector('.select--custom').classList.remove('select--open');
-							}
-							else{
-								document.querySelector('.select--custom').classList.add('select--open');
-							} } click()"
 					>
-						<span role="option" class="option--current selected" id="popularity" aria-selected="true">Popularité</span>
+						<span role="option" class="span option--current selected" id="popularity" aria-selected="true"
+							>Popularité</span
+						>
 						<div class="options">
-							<span class="option" role="option" id="date" aria-selected="false">Date</span>
-							<span class="option" role="option" id="title" aria-selected="false">Titre</span>
+							<span class="span option" role="option" id="date" aria-selected="false">Date</span>
+							<span class="span option" role="option" id="title" aria-selected="false">Titre</span>
 						</div>
 					</div>
 				</div>
@@ -76,6 +71,13 @@
 					<button class="contact_button" type="submit">Envoyer</button>
 				</form>
 			</div>
+		</div>
+		<div class="medias__likes">
+			<div class="likes">
+				<p class="likes__text" id="nbLikes"></p>
+				<img src="assets/icons/heart.svg" alt="" class="likes__icone" />
+			</div>
+			<p class="price" id="price"></p>
 		</div>
 		<script src="scripts/templates/photographer.js"></script>
 		<script src="scripts/templates/media.js"></script>

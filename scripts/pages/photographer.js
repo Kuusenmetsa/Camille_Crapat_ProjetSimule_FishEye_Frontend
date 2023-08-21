@@ -1,5 +1,4 @@
-//Mettre le code JavaScript lié à la page photographer.html
-
+// Fonction permettant de récupérer l'id du photographe dans l'URL
 function collectURL() {
 	var currentURL = window.location.href;
 	var url = new URL(currentURL);
@@ -17,6 +16,7 @@ function collectURL() {
 	}
 }
 
+// Fonction permettant de récupérer tous les photographes
 async function getPhotographers() {
 	const res = await fetch('data/photographers.json', {
 		method: 'GET',
@@ -28,6 +28,7 @@ async function getPhotographers() {
 	return photographers;
 }
 
+// Fonction permettant de récupérer le photographe concerné
 async function getPhotographer() {
 	const { photographers } = await getPhotographers();
 	var photographer;
@@ -39,6 +40,7 @@ async function getPhotographer() {
 	return photographer;
 }
 
+// Fonction permettant de récupérer tous les médias
 async function getMedias() {
 	const res = await fetch('data/photographers.json', {
 		method: 'GET',
@@ -50,24 +52,33 @@ async function getMedias() {
 	return medias;
 }
 
+// Fonction permettant de récupérer les médias uniquement du photographe
 async function getMedia() {
 	const { media } = await getMedias();
+	var likes;
 	const res = media.filter((media) => media.photographerId == collectURL());
+	res.forEach((res) => {
+		likes += res.likes;
+	});
 	return res;
 }
 
 async function sortMedia(type, media) {
 	if (type === 'popularity') {
+		// Si le tri est sur populaire
 		await media.sort(function (a, b) {
+			// On tri par nombre de like
 			return b.likes - a.likes;
 		});
 	} else if (type === 'date') {
+		// Si le tri est sur date
 		await media.sort(function (a, b) {
-			a.date = new Date(a.date).getTime();
-			b.date = new Date(b.date).getTime();
-			return b.date - a.date;
+			a.date = new Date(a.date).getTime(); // On récupère la date au format milliseconde
+			b.date = new Date(b.date).getTime(); // On récupère la date au format milliseconde
+			return b.date - a.date; // On tri par date
 		});
 	} else if (type === 'title') {
+		// Si le tri est sur titre
 		await media.sort(function (a, b) {
 			if (a.title < b.title) {
 				return -1;
@@ -82,29 +93,35 @@ async function sortMedia(type, media) {
 	return media;
 }
 
+// Fonction permettant l'affichage des données concernant le photographe
 async function displayData(photographer) {
-	const buttonContact = document.querySelector('.contact_button');
-	const photographerModel = photographerTemplate(photographer);
-	const identityPhotographerDOM = photographerModel.getIdentityPhotographerDOM();
-	const imgPhotographerDOM = photographerModel.getImgPhotographerDOM();
+	const buttonContact = document.querySelector('.contact_button'); // On récupère le bonton de contact pour ouvrir la modal
+	const photographerModel = photographerTemplate(photographer); // On récupère le template photographet
+	const identityPhotographerDOM = photographerModel.getIdentityPhotographerDOM(); // On récupère le DOM identité
+	const imgPhotographerDOM = photographerModel.getImgPhotographerDOM(); // On récupère le DOM Image
 
-	buttonContact.before(identityPhotographerDOM);
-	buttonContact.after(imgPhotographerDOM);
+	buttonContact.before(identityPhotographerDOM); // On ajoute avant le bouton contact l'identité
+	buttonContact.after(imgPhotographerDOM); // On ajoute après le bouton contact l'image
 
-	const titleName = document.getElementById('namePhotographer');
-	titleName.textContent = photographer.name;
+	const titleName = document.getElementById('namePhotographer'); // On charge l'emplacement pour le nom
+	titleName.textContent = photographer.name; // On l'ajoute
 }
 
-async function displayMedias(medias) {
+// Fonction permettant l'affichage des médias du photographe
+async function displayMedias(medias, name) {
 	const section = document.querySelector('.medias');
+	var count = 0;
 	medias.forEach((media) => {
-		const mediaModel = mediaTemplate(media);
+		const mediaModel = mediaTemplate(media, name);
 		const getMediasDOM = mediaModel.getMediasDOM();
-
+		count += media.likes;
 		section.appendChild(getMediasDOM);
 	});
+	const nbLikes = document.getElementById('nbLikes');
+	nbLikes.textContent = count;
 }
 
+// Fonction permettant de changer l'option affiché non dérouler
 function changeOption(span) {
 	const options = document.querySelector('.options');
 	const selected = document.querySelector('.selected');
@@ -122,20 +139,23 @@ function changeOption(span) {
 	selected.setAttribute('aria-selected', 'false');
 }
 
-async function eventOption(medias) {
-	const span = document.querySelectorAll('span');
+// Fonction permettant d'écouter le click sur une option du select et de réafficher les médias trié
+async function eventOption(medias, name) {
+	const span = document.querySelectorAll('.span'); // On récupère toutes les span
 	span.forEach((span) => {
 		span.addEventListener('click', async (e) => {
 			e.preventDefault();
 			if (span.getAttribute('id') === 'popularity') {
+				// Si la span contient l'id popularity
 				if (!span.classList.contains('selected')) {
+					// Si elle n'est pas actuellement selectionner, on effectu le tri et on la met en selectionné
 					changeOption(span);
 					const mediasNew = await sortMedia('popularity', medias);
 					const mediaCurrent = document.querySelectorAll('.mediaCard');
 					mediaCurrent.forEach((media) => {
 						media.remove();
 					});
-					await displayMedias(mediasNew);
+					await displayMedias(mediasNew, name);
 				}
 			} else if (span.getAttribute('id') === 'date') {
 				if (!span.classList.contains('selected')) {
@@ -145,7 +165,7 @@ async function eventOption(medias) {
 					mediaCurrent.forEach((media) => {
 						media.remove();
 					});
-					await displayMedias(mediasNew);
+					await displayMedias(mediasNew, name);
 				}
 			} else if (span.getAttribute('id') === 'title') {
 				if (!span.classList.contains('selected')) {
@@ -155,7 +175,7 @@ async function eventOption(medias) {
 					mediaCurrent.forEach((media) => {
 						media.remove();
 					});
-					await displayMedias(mediasNew);
+					await displayMedias(mediasNew, name);
 				}
 			} else {
 			}
@@ -163,15 +183,31 @@ async function eventOption(medias) {
 	});
 }
 
+// Fonction permettant d'ouvrir le trie
+function openSort() {
+	const sort = document.querySelector('.select--custom');
+	sort.addEventListener('click', () => {
+		if (sort.classList.contains('select--open')) {
+			sort.classList.remove('select--open');
+		} else {
+			sort.classList.add('select--open');
+		}
+	});
+}
+
+// Fonction d'initialisation
 async function init() {
 	const photographer = await getPhotographer();
 	const medias = await sortMedia('popularity', await getMedia());
+	const { name } = photographer;
 
 	// écouteur d'évènement
 
 	await displayData(photographer);
-	await displayMedias(medias);
-	eventOption(medias);
+	await displayMedias(medias, name);
+	eventOption(medias, name);
+	openSort();
 }
 
+// Chargement de la fonction init
 init();

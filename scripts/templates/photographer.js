@@ -1,8 +1,9 @@
 function photographerTemplate(data) {
-	const { name, id, city, country, tagline, price, portrait } = data;
+	const { name, id, city, country, tagline, price, portrait } = data; // On récupére toutes les donées
 
-	const picture = `assets/photographers/${portrait}`;
+	const picture = `assets/photographers/${portrait}`; // On créer le lien vers l'image
 
+	// Fonction permettant d'afficher l'image du photographe
 	function getImgPhotographerDOM() {
 		const img = document.createElement('img');
 		img.setAttribute('src', picture);
@@ -12,6 +13,7 @@ function photographerTemplate(data) {
 		return img;
 	}
 
+	// Fonction permettant d'afficher sur la page d'accueil la card du photographe
 	function getUserCardDOM() {
 		// Création d'un article
 		const article = document.createElement('article');
@@ -50,6 +52,7 @@ function photographerTemplate(data) {
 		return article;
 	}
 
+	// Fonction permettant l'affichage de l'identité du photographe dans la page photographe
 	function getIdentityPhotographerDOM() {
 		const div = document.createElement('div');
 		const titleElement = document.createElement('h2');
@@ -63,6 +66,9 @@ function photographerTemplate(data) {
 		div.appendChild(titleElement);
 		div.appendChild(localityElement);
 		div.appendChild(taglineELement);
+
+		const priceElement = document.getElementById('price');
+		priceElement.textContent = `${price}€ / Jour`;
 
 		return div;
 	}
