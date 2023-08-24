@@ -3,12 +3,13 @@ function mediaTemplate(data, name) {
 
 	const srcImage = `assets/medias/${name}/${image}`; // On prépare le lien vers la photo
 	const srcVideo = `assets/medias/${name}/${video}`; // On prépare le lien vers la vidéo
-	const heart = `assets/icons/heart.svg`; // On charge le coeur
+	const heart = `assets/icons/heart--orange.svg`; // On charge le coeur
 
 	// Fonction permettant d'afficher les médias
-	function getMediasDOM() {
+	function getMediasDOM(i) {
 		const figure = document.createElement('figure');
 		figure.setAttribute('class', 'mediaCard');
+		figure.setAttribute('id', i);
 		if (image != undefined) {
 			// Si l'image existe
 			const img = document.createElement('img');

@@ -39,6 +39,13 @@
 				</div>
 				<section class="medias"></section>
 			</div>
+			<div class="medias__likes">
+				<div class="likes">
+					<p class="likes__text" id="nbLikes"></p>
+					<img src="assets/icons/heart--orange.svg" alt="" class="likes__icone" />
+				</div>
+				<p class="price" id="price"></p>
+			</div>
 		</main>
 		<div id="contact_modal">
 			<div class="modal">
@@ -47,7 +54,7 @@
 						<h2>Contactez-moi</h2>
 						<h2 id="namePhotographer"></h2>
 					</div>
-					<img src="assets/icons/close.svg" id="contact_close" />
+					<img src="assets/icons/close--white.svg" id="contact_close" />
 				</header>
 				<form name="contact">
 					<div>
@@ -72,16 +79,18 @@
 				</form>
 			</div>
 		</div>
-		<div class="medias__likes">
-			<div class="likes">
-				<p class="likes__text" id="nbLikes"></p>
-				<img src="assets/icons/heart.svg" alt="" class="likes__icone" />
+		<div class="background" id="lightbox">
+			<div class="lightbox">
+				<img src="assets/icons/previous--orange.svg" alt="précédent" class="lightbox__previous" id="previous" />
+				<div class="lightbox__image" id="lightbox__image"></div>
+				<img src="assets/icons/next--orange.svg" alt="suivant" class="lightbox__next" id="next" />
+				<img src="assets/icons/close--orange.svg" alt="close" class="close" id="close-lightbox" />
 			</div>
-			<p class="price" id="price"></p>
 		</div>
-		<script src="scripts/templates/photographer.js"></script>
 		<script src="scripts/templates/media.js"></script>
+		<script src="scripts/templates/photographer.js"></script>
 		<script src="scripts/pages/photographer.js"></script>
 		<script src="scripts/utils/contactForm.js"></script>
+		<script src="scripts/utils/lightbox.js"></script>
 	</body>
 </html>

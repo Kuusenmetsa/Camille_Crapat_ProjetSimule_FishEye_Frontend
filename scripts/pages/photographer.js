@@ -111,11 +111,13 @@ async function displayData(photographer) {
 async function displayMedias(medias, name) {
 	const section = document.querySelector('.medias');
 	var count = 0;
+	var i = 0;
 	medias.forEach((media) => {
 		const mediaModel = mediaTemplate(media, name);
-		const getMediasDOM = mediaModel.getMediasDOM();
+		const getMediasDOM = mediaModel.getMediasDOM(i);
 		count += media.likes;
 		section.appendChild(getMediasDOM);
+		i++;
 	});
 	const nbLikes = document.getElementById('nbLikes');
 	nbLikes.textContent = count;
@@ -156,6 +158,7 @@ async function eventOption(medias, name) {
 						media.remove();
 					});
 					await displayMedias(mediasNew, name);
+					lightbox();
 				}
 			} else if (span.getAttribute('id') === 'date') {
 				if (!span.classList.contains('selected')) {
@@ -166,6 +169,7 @@ async function eventOption(medias, name) {
 						media.remove();
 					});
 					await displayMedias(mediasNew, name);
+					lightbox();
 				}
 			} else if (span.getAttribute('id') === 'title') {
 				if (!span.classList.contains('selected')) {
@@ -176,15 +180,18 @@ async function eventOption(medias, name) {
 						media.remove();
 					});
 					await displayMedias(mediasNew, name);
+					console.log(document.querySelectorAll('figure'));
+					lightbox();
 				}
 			} else {
+				console.log('une erreur a été detecté lors de la récupération du type de tri');
 			}
 		});
 	});
 }
 
 // Fonction permettant d'ouvrir le trie
-function openSort() {
+async function openSort() {
 	const sort = document.querySelector('.select--custom');
 	sort.addEventListener('click', () => {
 		if (sort.classList.contains('select--open')) {
@@ -207,6 +214,7 @@ async function init() {
 	await displayMedias(medias, name);
 	eventOption(medias, name);
 	openSort();
+	lightbox();
 }
 
 // Chargement de la fonction init

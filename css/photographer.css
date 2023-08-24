@@ -158,6 +158,7 @@ main section.medias figure.mediaCard {
 	justify-content: space-between;
 	align-items: center;
 	margin: 0;
+	cursor: pointer;
 }
 main section.medias figure.mediaCard .media__image {
 	width: 350px;
@@ -343,4 +344,59 @@ form textarea {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+}
+
+/* Lightbox */
+.background {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+.lightbox {
+	position: relative;
+	width: 1100px;
+	height: 800px;
+	background-color: #fff;
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 30px;
+}
+.lightbox__previous,
+.lightbox__next {
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+}
+.lightbox__image {
+	width: 900px;
+	overflow: hidden;
+}
+.lightbox__image img,
+.lightbox__image video {
+	width: 100%;
+	height: 675px;
+	object-fit: cover;
+	border-radius: 5px;
+}
+.lightbox__image h2 {
+	margin: 5px 0 0 0;
+	font-size: 24px;
+	color: #901c1c;
+	font-weight: normal;
+}
+.close {
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
 }
