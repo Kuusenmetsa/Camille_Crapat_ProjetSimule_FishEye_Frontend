@@ -14,7 +14,8 @@ async function lightbox() {
 	// Event
 	// Ouvrir la lightbox
 	figures.forEach((figure) => {
-		figure.addEventListener('click', () => {
+		figure.addEventListener('click', (e) => {
+			e.stopImmediatePropagation();
 			const id = figure.getAttribute('id');
 			i = parseInt(id);
 			openLightbox();
@@ -53,7 +54,10 @@ async function lightbox() {
 
 	// Suppression de l'image en cours
 	function removeMedia() {
-		document.getElementById('lightbox__image').querySelector('*').remove();
+		document
+			.getElementById('lightbox__image')
+			.querySelectorAll('*')
+			.forEach((el) => el.remove());
 	}
 
 	// Création de l'image
@@ -64,6 +68,9 @@ async function lightbox() {
 			img.setAttribute('src', medias[media].source);
 			img.setAttribute('id', 'img');
 			imgEmplLightbox.appendChild(img);
+			const h2 = document.createElement('h2');
+			h2.textContent = medias[media].name;
+			imgEmplLightbox.appendChild(h2);
 		} else if (medias[media].type === 'video') {
 			const video = document.createElement('video');
 			video.setAttribute('controls', '');
@@ -74,6 +81,9 @@ async function lightbox() {
 			source.setAttribute('type', 'video/mp4');
 			video.appendChild(source);
 			imgEmplLightbox.appendChild(video);
+			const h2 = document.createElement('h2');
+			h2.textContent = medias[media].name;
+			imgEmplLightbox.appendChild(h2);
 		}
 	}
 
@@ -111,11 +121,11 @@ async function lightbox() {
 				const el = {
 					type: figure.querySelectorAll('img.media__image').length > 0 ? 'image' : 'video',
 					source: src.getAttribute('src'),
+					name: figure.querySelector('.media__figcaption__title').textContent,
 				};
 				els.push(el);
 			});
 		});
-
 		return els;
 	}
 }

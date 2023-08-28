@@ -48,8 +48,8 @@ async function getMedias() {
 			Accept: 'applciation/json',
 		},
 	});
-	const medias = await res.json();
-	return medias;
+	const media = await res.json();
+	return media;
 }
 
 // Fonction permettant de récupérer les médias uniquement du photographe
@@ -119,8 +119,6 @@ async function displayMedias(medias, name) {
 		section.appendChild(getMediasDOM);
 		i++;
 	});
-	const nbLikes = document.getElementById('nbLikes');
-	nbLikes.textContent = count;
 }
 
 // Fonction permettant de changer l'option affiché non dérouler
@@ -215,6 +213,10 @@ async function init() {
 	eventOption(medias, name);
 	openSort();
 	lightbox();
+
+	const nbLikes = likes(medias).getNbLikes();
+	likes(medias).displayGlobalLikes(nbLikes);
+	//likes(medias).initLike(medias);
 }
 
 // Chargement de la fonction init

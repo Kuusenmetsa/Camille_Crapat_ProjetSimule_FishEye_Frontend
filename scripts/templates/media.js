@@ -1,9 +1,9 @@
 function mediaTemplate(data, name) {
-	const { title, image, video, likes } = data; // On récupère les données du média
+	const { title, id, image, video, likes } = data; // On récupère les données du média
 
 	const srcImage = `assets/medias/${name}/${image}`; // On prépare le lien vers la photo
 	const srcVideo = `assets/medias/${name}/${video}`; // On prépare le lien vers la vidéo
-	const heart = `assets/icons/heart--orange.svg`; // On charge le coeur
+	const heart = `assets/icons/heart__empty--orange.svg`; // On charge le coeur
 
 	// Fonction permettant d'afficher les médias
 	function getMediasDOM(i) {
@@ -53,5 +53,5 @@ function mediaTemplate(data, name) {
 		return figure;
 	}
 
-	return { title, getMediasDOM };
+	return { title, id, getMediasDOM };
 }
