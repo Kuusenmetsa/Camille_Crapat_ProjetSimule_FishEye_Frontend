@@ -119,6 +119,7 @@ async function displayMedias(medias, name) {
 		section.appendChild(getMediasDOM);
 		i++;
 	});
+	displayGlobalLikes(count);
 }
 
 // Fonction permettant de changer l'option affiché non dérouler
@@ -157,6 +158,7 @@ async function eventOption(medias, name) {
 					});
 					await displayMedias(mediasNew, name);
 					lightbox();
+					like();
 				}
 			} else if (span.getAttribute('id') === 'date') {
 				if (!span.classList.contains('selected')) {
@@ -168,6 +170,7 @@ async function eventOption(medias, name) {
 					});
 					await displayMedias(mediasNew, name);
 					lightbox();
+					like();
 				}
 			} else if (span.getAttribute('id') === 'title') {
 				if (!span.classList.contains('selected')) {
@@ -180,6 +183,7 @@ async function eventOption(medias, name) {
 					await displayMedias(mediasNew, name);
 					console.log(document.querySelectorAll('figure'));
 					lightbox();
+					like();
 				}
 			} else {
 				console.log('une erreur a été detecté lors de la récupération du type de tri');
@@ -213,10 +217,7 @@ async function init() {
 	eventOption(medias, name);
 	openSort();
 	lightbox();
-
-	const nbLikes = likes(medias).getNbLikes();
-	likes(medias).displayGlobalLikes(nbLikes);
-	//likes(medias).initLike(medias);
+	like();
 }
 
 // Chargement de la fonction init

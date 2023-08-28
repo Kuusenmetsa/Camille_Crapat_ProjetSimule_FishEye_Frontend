@@ -14,8 +14,7 @@ async function lightbox() {
 	// Event
 	// Ouvrir la lightbox
 	figures.forEach((figure) => {
-		figure.addEventListener('click', (e) => {
-			e.stopImmediatePropagation();
+		figure.querySelector('.media__image').addEventListener('click', () => {
 			const id = figure.getAttribute('id');
 			i = parseInt(id);
 			openLightbox();

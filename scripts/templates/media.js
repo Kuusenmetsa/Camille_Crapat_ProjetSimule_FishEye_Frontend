@@ -3,7 +3,8 @@ function mediaTemplate(data, name) {
 
 	const srcImage = `assets/medias/${name}/${image}`; // On prépare le lien vers la photo
 	const srcVideo = `assets/medias/${name}/${video}`; // On prépare le lien vers la vidéo
-	const heart = `assets/icons/heart__empty--orange.svg`; // On charge le coeur
+	const heartEmpty = `assets/icons/heart__empty--orange.svg`; // On charge le coeur
+	const heartFull = `assets/icons/heart__full--orange.svg`;
 
 	// Fonction permettant d'afficher les médias
 	function getMediasDOM(i) {
@@ -38,15 +39,20 @@ function mediaTemplate(data, name) {
 		const like = document.createElement('div');
 		like.setAttribute('class', 'media__figcaption__like');
 		const nbLike = document.createElement('p');
-		nbLike.setAttribute('class', 'media__figcaption__likeText');
+		nbLike.setAttribute('class', 'media__figcaption__likeText nbLikes');
 		nbLike.textContent = likes;
-		const ico = document.createElement('img');
-		ico.setAttribute('src', heart);
-		ico.setAttribute('alt', '');
-		ico.setAttribute('class', 'media__figcfaption__likeIco');
+		const icoEmpty = document.createElement('img');
+		icoEmpty.setAttribute('src', heartEmpty);
+		icoEmpty.setAttribute('alt', '');
+		icoEmpty.setAttribute('class', 'media__figcfaption__likeIco empty');
+		const icoFull = document.createElement('img');
+		icoFull.setAttribute('src', heartFull);
+		icoFull.setAttribute('alt', '');
+		icoFull.setAttribute('class', 'media__figcfaption__likeIco full notDisplay');
 		figcaption.appendChild(p);
 		like.appendChild(nbLike);
-		like.appendChild(ico);
+		like.appendChild(icoEmpty);
+		like.appendChild(icoFull);
 		figcaption.appendChild(like);
 		figure.appendChild(figcaption);
 

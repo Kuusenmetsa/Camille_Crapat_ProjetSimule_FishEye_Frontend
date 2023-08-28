@@ -193,6 +193,9 @@ main
 	.media__figcfaption__likeIco {
 	width: 18px;
 }
+main section.medias figure.mediaCard figcaption.media__figcaption .media__figcaption__like .notDisplay {
+	display: none;
+}
 main
 	section.medias
 	figure.mediaCard
