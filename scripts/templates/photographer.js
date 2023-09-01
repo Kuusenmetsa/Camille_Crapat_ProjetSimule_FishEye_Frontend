@@ -7,7 +7,7 @@ function photographerTemplate(data) {
 	function getImgPhotographerDOM() {
 		const img = document.createElement('img');
 		img.setAttribute('src', picture);
-		img.setAttribute('alt', name);
+		img.setAttribute('aria-label', `photographie de ${name}`);
 		img.setAttribute('class', 'photographerImg');
 
 		return img;
@@ -22,6 +22,7 @@ function photographerTemplate(data) {
 		const a = document.createElement('a');
 		a.setAttribute('href', `./photographer.html?id=${id}`);
 		a.setAttribute('aria-label', name);
+		a.setAttribute('tabindex', '0');
 		article.appendChild(a);
 		const h2 = document.createElement('h2');
 		h2.textContent = name;
@@ -42,11 +43,18 @@ function photographerTemplate(data) {
 		const priceElement = document.createElement('p');
 		priceElement.textContent = `${price}€/jour`;
 		priceElement.setAttribute('class', 'price');
+		priceElement.setAttribute('aria-label', `${price}€ par jour`);
+
+		// Création de la div englobante
+		const div = document.createElement('div');
+		div.setAttribute('class', 'infos');
+		div.setAttribute('tabindex', '0');
+		div.appendChild(localityElement);
+		div.appendChild(taglineElement);
+		div.appendChild(priceElement);
 
 		// Ajout de ces élèments à l'article
-		article.appendChild(localityElement);
-		article.appendChild(taglineElement);
-		article.appendChild(priceElement);
+		article.appendChild(div);
 
 		// On retourne l'article
 		return article;
@@ -56,6 +64,7 @@ function photographerTemplate(data) {
 	function getIdentityPhotographerDOM() {
 		const div = document.createElement('div');
 		const titleElement = document.createElement('h2');
+		titleElement.setAttribute('tabindex', '2');
 		titleElement.textContent = name;
 		const localityElement = document.createElement('p');
 		localityElement.textContent = `${city}, ${country}`;
@@ -63,11 +72,15 @@ function photographerTemplate(data) {
 		const taglineELement = document.createElement('p');
 		taglineELement.textContent = tagline;
 		taglineELement.setAttribute('class', 'tagline');
+		const encompass = document.createElement('div');
+		encompass.setAttribute('tabindex', '3');
+		encompass.appendChild(localityElement);
+		encompass.appendChild(taglineELement);
 		div.appendChild(titleElement);
-		div.appendChild(localityElement);
-		div.appendChild(taglineELement);
+		div.appendChild(encompass);
 
 		const priceElement = document.getElementById('price');
+		priceElement.setAttribute('aria-label', `${price}€ par jour`);
 		priceElement.textContent = `${price}€ / Jour`;
 
 		return div;

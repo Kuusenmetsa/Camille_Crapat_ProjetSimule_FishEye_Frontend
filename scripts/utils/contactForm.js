@@ -39,12 +39,16 @@ inputContact.forEach((input) => {
 // Launch modal contact
 function displayModal() {
 	const modal = document.getElementById('contact_modal');
+	const main = document.querySelector('main');
+	modal.setAttribute('aria-hidden', 'false');
+	main.setAttribute('aria-hidden', 'true');
 	modal.style.display = 'block';
 }
 
 // Close modal contact
 function closeModal() {
 	const modal = document.getElementById('contact_modal');
+	modal.setAttribute('aria-hidden', 'true');
 	modal.style.display = 'none';
 }
 

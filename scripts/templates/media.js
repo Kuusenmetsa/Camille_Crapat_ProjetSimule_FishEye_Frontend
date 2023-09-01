@@ -17,6 +17,7 @@ function mediaTemplate(data, name) {
 			img.setAttribute('src', srcImage);
 			img.setAttribute('alt', '');
 			img.setAttribute('class', 'media__image');
+			img.setAttribute('tabindex', '0');
 			figure.appendChild(img);
 		}
 		if (video != undefined) {
@@ -28,6 +29,7 @@ function mediaTemplate(data, name) {
 			video.setAttribute('class', 'media__image');
 			video.setAttribute('controls', '');
 			video.setAttribute('autoplay', '');
+			video.setAttribute('tabindex', '0');
 			video.appendChild(src);
 			figure.appendChild(video);
 		}
@@ -35,6 +37,7 @@ function mediaTemplate(data, name) {
 		figcaption.setAttribute('class', 'media__figcaption');
 		const p = document.createElement('p');
 		p.setAttribute('class', 'media__figcaption__title');
+		p.setAttribute('tabindex', '0');
 		p.textContent = title;
 		const like = document.createElement('div');
 		like.setAttribute('class', 'media__figcaption__like');
@@ -45,10 +48,12 @@ function mediaTemplate(data, name) {
 		icoEmpty.setAttribute('src', heartEmpty);
 		icoEmpty.setAttribute('alt', '');
 		icoEmpty.setAttribute('class', 'media__figcfaption__likeIco empty');
+		icoEmpty.setAttribute('tabindex', '0');
 		const icoFull = document.createElement('img');
 		icoFull.setAttribute('src', heartFull);
 		icoFull.setAttribute('alt', '');
 		icoFull.setAttribute('class', 'media__figcfaption__likeIco full notDisplay');
+		icoFull.setAttribute('tabindex', '0');
 		figcaption.appendChild(p);
 		like.appendChild(nbLike);
 		like.appendChild(icoEmpty);

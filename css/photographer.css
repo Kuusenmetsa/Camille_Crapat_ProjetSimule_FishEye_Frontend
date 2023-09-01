@@ -225,6 +225,7 @@ main
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	height: 55px;
 }
 .likes .likes__text {
 	margin-right: 5px;

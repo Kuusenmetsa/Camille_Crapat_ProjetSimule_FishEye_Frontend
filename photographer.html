@@ -9,17 +9,17 @@
 	</head>
 	<body>
 		<header>
-			<a href="./" aria-label="Fisheye Home page">
+			<a tabindex="1" href="./" aria-label="Fisheye Home page">
 				<img src="assets/images/logo.png" class="logo" alt="fisheye logo"
 			/></a>
 		</header>
 		<main id="main">
 			<div class="photograph-header">
-				<button class="contact_button">Contactez-moi</button>
+				<button class="contact_button" tabindex="4">Contactez-moi</button>
 			</div>
 			<div id="mediasContainer">
 				<div class="sortChange">
-					<p id="labelSort" role="label">Trier par</p>
+					<p id="labelSort" role="label" tabindex="0">Trier par</p>
 					<div
 						class="select--custom"
 						role="listbox"
@@ -39,15 +39,15 @@
 				</div>
 				<section class="medias"></section>
 			</div>
-			<div class="medias__likes">
+			<div class="medias__likes" tabindex="6">
 				<div class="likes">
 					<p class="likes__text" id="nbLikes"></p>
-					<img src="assets/icons/heart__full--orange.svg" alt="" class="likes__icone" />
+					<img src="assets/icons/heart__full--orange.svg" alt="" class="likes__icone" aria-label="likes" />
 				</div>
 				<p class="price" id="price"></p>
 			</div>
 		</main>
-		<div id="contact_modal">
+		<div id="contact_modal" aria-hidden="true" tabindex="1">
 			<div class="modal">
 				<header>
 					<div>
@@ -79,8 +79,8 @@
 				</form>
 			</div>
 		</div>
-		<div class="background" id="lightbox">
-			<div class="lightbox">
+		<div class="background" id="lightbox" aria-modal="true" aria-hidden="true">
+			<div class="lightbox" tabindex="1">
 				<img src="assets/icons/previous--orange.svg" alt="précédent" class="lightbox__previous" id="previous" />
 				<div class="lightbox__image" id="lightbox__image"></div>
 				<img src="assets/icons/next--orange.svg" alt="suivant" class="lightbox__next" id="next" />

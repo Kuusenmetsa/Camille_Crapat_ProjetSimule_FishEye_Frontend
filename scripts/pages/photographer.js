@@ -99,6 +99,7 @@ async function displayData(photographer) {
 	const photographerModel = photographerTemplate(photographer); // On récupère le template photographet
 	const identityPhotographerDOM = photographerModel.getIdentityPhotographerDOM(); // On récupère le DOM identité
 	const imgPhotographerDOM = photographerModel.getImgPhotographerDOM(); // On récupère le DOM Image
+	imgPhotographerDOM.setAttribute('tabindex', '5');
 
 	buttonContact.before(identityPhotographerDOM); // On ajoute avant le bouton contact l'identité
 	buttonContact.after(imgPhotographerDOM); // On ajoute après le bouton contact l'image

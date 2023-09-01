@@ -74,6 +74,13 @@ h1 {
 	margin-bottom: 0;
 }
 
+.photographer_section article div.infos {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .photographer_section article p.locality {
 	color: #901c1c;
 	font-size: 13px;
