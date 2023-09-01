@@ -7,7 +7,6 @@ function photographerTemplate(data) {
 	function getImgPhotographerDOM() {
 		const img = document.createElement('img');
 		img.setAttribute('src', picture);
-		img.setAttribute('aria-label', `photographie de ${name}`);
 		img.setAttribute('class', 'photographerImg');
 
 		return img;
@@ -64,7 +63,7 @@ function photographerTemplate(data) {
 	function getIdentityPhotographerDOM() {
 		const div = document.createElement('div');
 		const titleElement = document.createElement('h2');
-		titleElement.setAttribute('tabindex', '2');
+		titleElement.setAttribute('tabindex', '0');
 		titleElement.textContent = name;
 		const localityElement = document.createElement('p');
 		localityElement.textContent = `${city}, ${country}`;
@@ -73,7 +72,7 @@ function photographerTemplate(data) {
 		taglineELement.textContent = tagline;
 		taglineELement.setAttribute('class', 'tagline');
 		const encompass = document.createElement('div');
-		encompass.setAttribute('tabindex', '3');
+		encompass.setAttribute('tabindex', '0');
 		encompass.appendChild(localityElement);
 		encompass.appendChild(taglineELement);
 		div.appendChild(titleElement);

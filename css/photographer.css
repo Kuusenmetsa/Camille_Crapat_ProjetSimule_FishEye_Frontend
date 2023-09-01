@@ -68,15 +68,21 @@
 	border-radius: 5px;
 	cursor: pointer;
 }
-.select--custom span {
+.select--custom button {
+	background: none;
+	border: none;
+	display: inline;
 	width: 100%;
 	height: 69px;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	text-align: left;
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
 }
-.select--open span {
+.select--open button {
 	border-bottom: 1.5px solid #fff;
 }
 .select--custom.select--open {
@@ -102,6 +108,7 @@
 	font-size: 18px;
 	font-weight: bold;
 	text-align: left;
+	padding: 0;
 }
 .option--current::after {
 	width: 32px;
@@ -173,6 +180,7 @@ main section.medias figure.mediaCard figcaption.media__figcaption {
 	width: 350px;
 	height: 50px;
 }
+main section.medias figure.mediaCard figcaption.media__figcaption h2,
 main section.medias figure.mediaCard figcaption.media__figcaption p {
 	font-size: 24px;
 	color: #901c1c;

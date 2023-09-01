@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<link href="css/style.css" rel="stylesheet" type="text/css" />
 		<meta charset="utf-8" />
@@ -9,82 +9,115 @@
 	</head>
 	<body>
 		<header>
-			<a tabindex="1" href="./" aria-label="Fisheye Home page">
+			<a tabindex="0" href="./" aria-label="Fisheye Home page">
 				<img src="assets/images/logo.png" class="logo" alt="fisheye logo"
 			/></a>
 		</header>
 		<main id="main">
 			<div class="photograph-header">
-				<button class="contact_button" tabindex="4">Contactez-moi</button>
+				<button class="contact_button" tabindex="0" aria-label="Contact Me">Contactez-moi</button>
 			</div>
 			<div id="mediasContainer">
+				<div class="medias__likes" tabindex="0">
+					<div class="likes">
+						<p class="likes__text" id="nbLikes"></p>
+						<img src="assets/icons/heart__full--orange.svg" alt="" class="likes__icone" aria-label="likes" />
+					</div>
+					<p class="price" id="price"></p>
+				</div>
 				<div class="sortChange">
-					<p id="labelSort" role="label" tabindex="0">Trier par</p>
+					<p id="labelSort">Trier par</p>
 					<div
 						class="select--custom"
-						role="listbox"
+						role="button"
+						aria-haspopup="listbox"
+						aria-expanded="false"
 						id="select"
 						aria-labelledby="labelSort"
 						aria-activedescendant="popularity"
-						tabindex="0"
 					>
-						<span role="option" class="span option--current selected" id="popularity" aria-selected="true"
-							>Popularité</span
+						<button
+							role="option"
+							class="span option--current selected"
+							id="popularity"
+							aria-selected="true"
+							tabindex="0"
 						>
+							Popularité
+						</button>
 						<div class="options">
-							<span class="span option" role="option" id="date" aria-selected="false">Date</span>
-							<span class="span option" role="option" id="title" aria-selected="false">Titre</span>
+							<button class="span option" role="option" id="date" aria-selected="false" tabindex="0">Date</button>
+							<button class="span option" role="option" id="title" aria-selected="false" tabindex="0">Titre</button>
 						</div>
 					</div>
 				</div>
 				<section class="medias"></section>
 			</div>
-			<div class="medias__likes" tabindex="6">
-				<div class="likes">
-					<p class="likes__text" id="nbLikes"></p>
-					<img src="assets/icons/heart__full--orange.svg" alt="" class="likes__icone" aria-label="likes" />
-				</div>
-				<p class="price" id="price"></p>
-			</div>
 		</main>
-		<div id="contact_modal" aria-hidden="true" tabindex="1">
-			<div class="modal">
+		<div id="contact_modal">
+			<div class="modal" tabindex="1" aria-labelledby="namePhotographer">
 				<header>
 					<div>
-						<h2>Contactez-moi</h2>
-						<h2 id="namePhotographer"></h2>
+						<h2 id="namePhotographer" tabindex="2"></h2>
 					</div>
-					<img src="assets/icons/close--white.svg" id="contact_close" />
+					<img
+						src="assets/icons/close--white.svg"
+						id="contact_close"
+						alt="close"
+						tabindex="12"
+						aria-label="close contact form"
+					/>
 				</header>
 				<form name="contact">
 					<div>
 						<div class="formData firstname" data-error="Veuillez entrer un prénom valide" data-error-visible="false">
-							<label for="firstname">Prénom</label>
-							<input type="text" name="firstname" class="input" id="firstname" />
+							<label for="firstname" tabindex="3">Prénom</label>
+							<input type="text" name="firstname" class="input" id="firstname" tabindex="4" />
 						</div>
 						<div class="formData lastname" data-error="Veuillez entrer un nom valide" data-error-visible="false">
-							<label for="lastname">Nom</label>
-							<input type="text" name="lastname" class="input" id="lastname" />
+							<label for="lastname" tabindex="5">Nom</label>
+							<input type="text" name="lastname" class="input" id="lastname" tabindex="6" />
 						</div>
 						<div class="formData mail" data-error="Veuillez entrer un e-mail valide" data-error-visible="false">
-							<label for="mail">Email</label>
-							<input type="email" name="mail" class="input" id="mail" />
+							<label for="mail" tabindex="7">Email</label>
+							<input type="email" name="mail" class="input" id="mail" tabindex="8" />
 						</div>
 						<div class="formData message" data-error="Veuillez entrer un message valide" data-error-visible="false">
-							<label for="message">Votre message</label>
-							<textarea type="text" name="message" class="input" id="message"></textarea>
+							<label for="message" tabindex="9">Votre message</label>
+							<textarea name="message" class="input" id="message" tabindex="10"></textarea>
 						</div>
 					</div>
-					<button class="contact_button" type="submit">Envoyer</button>
+					<button class="contact_button" type="submit" tabindex="11" aria-label="send">Envoyer</button>
 				</form>
 			</div>
 		</div>
-		<div class="background" id="lightbox" aria-modal="true" aria-hidden="true">
-			<div class="lightbox" tabindex="1">
-				<img src="assets/icons/previous--orange.svg" alt="précédent" class="lightbox__previous" id="previous" />
+		<div class="background" id="lightbox">
+			<div class="lightbox" tabindex="1" aria-label="image closeup view">
+				<img
+					src="assets/icons/previous--orange.svg"
+					alt="précédent"
+					class="lightbox__previous"
+					id="previous"
+					tabindex="4"
+					aria-label="previous image"
+				/>
 				<div class="lightbox__image" id="lightbox__image"></div>
-				<img src="assets/icons/next--orange.svg" alt="suivant" class="lightbox__next" id="next" />
-				<img src="assets/icons/close--orange.svg" alt="close" class="close" id="close-lightbox" />
+				<img
+					src="assets/icons/next--orange.svg"
+					alt="suivant"
+					class="lightbox__next"
+					id="next"
+					tabindex="5"
+					aria-label="next image"
+				/>
+				<img
+					src="assets/icons/close--orange.svg"
+					alt="close"
+					class="close"
+					id="close-lightbox"
+					tabindex="6"
+					aria-label="close dialog"
+				/>
 			</div>
 		</div>
 		<script src="scripts/templates/media.js"></script>

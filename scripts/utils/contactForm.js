@@ -18,6 +18,11 @@ modalOpenBtn.addEventListener('click', () => displayModal());
 
 // Launch close modal event
 modalClose.addEventListener('click', () => closeModal());
+modalClose.addEventListener('keyup', (e) => {
+	if (e.key === 'Enter') {
+		closeModal();
+	}
+});
 
 // Launch submit form contact event
 formContact.forEach((submit) => {
@@ -39,17 +44,21 @@ inputContact.forEach((input) => {
 // Launch modal contact
 function displayModal() {
 	const modal = document.getElementById('contact_modal');
-	const main = document.querySelector('main');
-	modal.setAttribute('aria-hidden', 'false');
-	main.setAttribute('aria-hidden', 'true');
+	const body = document.querySelectorAll('body *[tabindex="0"]');
+	body.forEach((body) => {
+		body.setAttribute('tabindex', '-1');
+	});
 	modal.style.display = 'block';
 }
 
 // Close modal contact
 function closeModal() {
 	const modal = document.getElementById('contact_modal');
-	modal.setAttribute('aria-hidden', 'true');
 	modal.style.display = 'none';
+	const body = document.querySelectorAll('body *[tabindex="-1"]');
+	body.forEach((body, index) => {
+		body.setAttribute('tabindex', '0');
+	});
 }
 
 // Get value input contact

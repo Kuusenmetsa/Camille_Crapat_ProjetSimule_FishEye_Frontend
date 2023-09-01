@@ -38,6 +38,32 @@ function like() {
 					}
 				}
 			});
+			likeButton.addEventListener('keyup', (e) => {
+				if (e.key === 'Enter') {
+					if (!likeButton.classList.contains('notDisplay')) {
+						if (likeButton.classList.contains('empty')) {
+							nbLikes.textContent = parseInt(nbLikes.textContent) + 1;
+							figcaption.querySelectorAll('.empty').forEach((el) => {
+								el.classList.add('notDisplay');
+							});
+							figcaption.querySelectorAll('.full').forEach((el) => {
+								el.classList.remove('notDisplay');
+							});
+							displayGlobalLikes(getGlobalLikes() + 1);
+						} else {
+							nbLikes.textContent = parseInt(nbLikes.textContent) - 1;
+							figcaption.querySelectorAll('.empty').forEach((el) => {
+								el.classList.remove('notDisplay');
+							});
+							figcaption.querySelectorAll('.full').forEach((el) => {
+								el.classList.add('notDisplay');
+							});
+
+							displayGlobalLikes(getGlobalLikes() - 1);
+						}
+					}
+				}
+			});
 		});
 	});
 }

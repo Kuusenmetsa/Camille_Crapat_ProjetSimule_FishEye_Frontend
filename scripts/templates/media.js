@@ -18,6 +18,7 @@ function mediaTemplate(data, name) {
 			img.setAttribute('alt', '');
 			img.setAttribute('class', 'media__image');
 			img.setAttribute('tabindex', '0');
+			img.setAttribute('aria-label', 'Lilac breasted roller, closeup view');
 			figure.appendChild(img);
 		}
 		if (video != undefined) {
@@ -30,15 +31,16 @@ function mediaTemplate(data, name) {
 			video.setAttribute('controls', '');
 			video.setAttribute('autoplay', '');
 			video.setAttribute('tabindex', '0');
+			video.setAttribute('aria-label', 'Lilac breasted roller, closeup view');
 			video.appendChild(src);
 			figure.appendChild(video);
 		}
 		const figcaption = document.createElement('figcaption');
 		figcaption.setAttribute('class', 'media__figcaption');
-		const p = document.createElement('p');
-		p.setAttribute('class', 'media__figcaption__title');
-		p.setAttribute('tabindex', '0');
-		p.textContent = title;
+		const h2 = document.createElement('h2');
+		h2.setAttribute('class', 'media__figcaption__title');
+		h2.setAttribute('tabindex', '0');
+		h2.textContent = title;
 		const like = document.createElement('div');
 		like.setAttribute('class', 'media__figcaption__like');
 		const nbLike = document.createElement('p');
@@ -49,12 +51,14 @@ function mediaTemplate(data, name) {
 		icoEmpty.setAttribute('alt', '');
 		icoEmpty.setAttribute('class', 'media__figcfaption__likeIco empty');
 		icoEmpty.setAttribute('tabindex', '0');
+		icoEmpty.setAttribute('alt', 'like');
 		const icoFull = document.createElement('img');
 		icoFull.setAttribute('src', heartFull);
 		icoFull.setAttribute('alt', '');
 		icoFull.setAttribute('class', 'media__figcfaption__likeIco full notDisplay');
 		icoFull.setAttribute('tabindex', '0');
-		figcaption.appendChild(p);
+		icoFull.setAttribute('alt', 'dislike');
+		figcaption.appendChild(h2);
 		like.appendChild(nbLike);
 		like.appendChild(icoEmpty);
 		like.appendChild(icoFull);

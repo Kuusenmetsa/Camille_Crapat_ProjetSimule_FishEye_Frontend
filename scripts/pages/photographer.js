@@ -99,13 +99,14 @@ async function displayData(photographer) {
 	const photographerModel = photographerTemplate(photographer); // On récupère le template photographet
 	const identityPhotographerDOM = photographerModel.getIdentityPhotographerDOM(); // On récupère le DOM identité
 	const imgPhotographerDOM = photographerModel.getImgPhotographerDOM(); // On récupère le DOM Image
-	imgPhotographerDOM.setAttribute('tabindex', '5');
+	imgPhotographerDOM.setAttribute('tabindex', '0');
+	imgPhotographerDOM.setAttribute('aria-label', photographer.name);
 
 	buttonContact.before(identityPhotographerDOM); // On ajoute avant le bouton contact l'identité
 	buttonContact.after(imgPhotographerDOM); // On ajoute après le bouton contact l'image
 
 	const titleName = document.getElementById('namePhotographer'); // On charge l'emplacement pour le nom
-	titleName.textContent = photographer.name; // On l'ajoute
+	titleName.textContent = `Contactez-moi ${photographer.name}`; // On l'ajoute
 }
 
 // Fonction permettant l'affichage des médias du photographe
@@ -198,8 +199,10 @@ async function openSort() {
 	const sort = document.querySelector('.select--custom');
 	sort.addEventListener('click', () => {
 		if (sort.classList.contains('select--open')) {
+			sort.setAttribute('aria-expanded', 'false');
 			sort.classList.remove('select--open');
 		} else {
+			sort.setAttribute('aria-expanded', 'true');
 			sort.classList.add('select--open');
 		}
 	});
