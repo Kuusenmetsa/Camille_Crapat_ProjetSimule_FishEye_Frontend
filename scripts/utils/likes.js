@@ -1,13 +1,17 @@
+// Function
+// Affichage des likes dans l'encart en bas à droite
 function displayGlobalLikes(likes) {
 	const el = document.getElementById('nbLikes');
 	el.textContent = likes;
 }
 
+// Récupération de tous les likes
 function getGlobalLikes() {
 	const el = document.getElementById('nbLikes');
 	return parseInt(el.textContent);
 }
 
+// Like ou dislike
 function like() {
 	const figcaptions = document.querySelectorAll('figcaption');
 	figcaptions.forEach((figcaption) => {

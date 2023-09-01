@@ -52,6 +52,10 @@ async function lightbox() {
 			removeMedia();
 			previousMedia();
 		}
+		if (e.key === 'ArrowLeft') {
+			removeMedia();
+			previousMedia();
+		}
 	});
 
 	// Click sur le bouton suivant
@@ -61,6 +65,10 @@ async function lightbox() {
 	});
 	nextButton.addEventListener('keyup', (e) => {
 		if (e.key === 'Enter') {
+			removeMedia();
+			nextMedia();
+		}
+		if (e.key === 'ArrowRight') {
 			removeMedia();
 			nextMedia();
 		}

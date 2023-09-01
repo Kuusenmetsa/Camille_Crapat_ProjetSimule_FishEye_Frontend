@@ -13,10 +13,10 @@ const regexMail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const regexMessage = /^[\w\sàâäéèêëïîôöùûüçÂ"'(-_\/@)°+=€$£%*,?;.:!]{2,}$/;
 
 //Event
-//Launch open contact modal open
+// Ouvrir la modal
 modalOpenBtn.addEventListener('click', () => displayModal());
 
-// Launch close modal event
+// Fermer la modal
 modalClose.addEventListener('click', () => closeModal());
 modalClose.addEventListener('keyup', (e) => {
 	if (e.key === 'Enter') {
@@ -24,7 +24,7 @@ modalClose.addEventListener('keyup', (e) => {
 	}
 });
 
-// Launch submit form contact event
+// Lorsqu'on clique sur le bouton
 formContact.forEach((submit) => {
 	submit.addEventListener('submit', (e) => {
 		e.preventDefault();
@@ -32,7 +32,7 @@ formContact.forEach((submit) => {
 	});
 });
 
-// Launch change input contact event
+// Lorsqu'on change d'input
 inputContact.forEach((input) => {
 	input.addEventListener('change', (e) => {
 		e.preventDefault();
@@ -41,7 +41,7 @@ inputContact.forEach((input) => {
 });
 
 // Function
-// Launch modal contact
+// Chargement de la modal
 function displayModal() {
 	const modal = document.getElementById('contact_modal');
 	const body = document.querySelectorAll('body *[tabindex="0"]');
@@ -51,7 +51,7 @@ function displayModal() {
 	modal.style.display = 'block';
 }
 
-// Close modal contact
+// Fermeture de la modal
 function closeModal() {
 	const modal = document.getElementById('contact_modal');
 	modal.style.display = 'none';
@@ -61,12 +61,12 @@ function closeModal() {
 	});
 }
 
-// Get value input contact
+// Récupération de la value des inputs
 function getValue(id = '') {
 	return document.getElementById(id).value;
 }
 
-// Checked form contact
+// Vérification des inputs
 async function checkInputs(type = null) {
 	const firstName = checkInput('firstname', '.firstname', regexName);
 	const lastName = checkInput('lastname', '.lastname', regexName);
@@ -102,7 +102,7 @@ async function checkInputs(type = null) {
 	}
 }
 
-// Checked input
+// Vérification input
 function checkInput(id = '', className = '', regex = '') {
 	const value = getValue(id);
 	if (value === '' || !regex.test(value)) {
