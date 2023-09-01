@@ -7,7 +7,7 @@ function photographerTemplate(data) {
 	function getImgPhotographerDOM() {
 		const img = document.createElement('img');
 		img.setAttribute('src', picture);
-		img.setAttribute('alt', name);
+		img.setAttribute('alt', '');
 		img.setAttribute('class', 'photographerImg');
 
 		return img;
